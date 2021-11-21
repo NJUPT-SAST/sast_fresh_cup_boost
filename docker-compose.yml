@@ -1,0 +1,55 @@
+version: "3"
+
+networks:
+  app_net:
+
+services:
+  entry:
+    container_name: entry
+    build:
+      context: .
+      dockerfile: docker/entry.Dockerfile
+    networks:
+      - "app_net"
+    depends_on:
+      - backend
+    ports:
+      - 8000:80
+
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    networks:
+      - "app_net"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - ADMIN_NAME=${ADMIN_NAME}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=sast_fresh_cup
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=sast_fresh_cup
+      - MYSQL_USER=sast
+      - MYSQL_PASSWORD=sast
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - "app_net"
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      interval: 2s
+      timeout: 20s
+      retries: 30

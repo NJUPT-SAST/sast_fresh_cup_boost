@@ -1,0 +1,6 @@
+[submodule "extern/sast_fresh_cup_frontend"]
+	path = extern/sast_fresh_cup_frontend
+	url = https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_frontend.git
+[submodule "extern/sast_fresh_cup_backend"]
+	path = extern/sast_fresh_cup_backend
+	url = https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_backend.git

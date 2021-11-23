@@ -1,4 +1,5 @@
 ARG PORT=8000
+ARG CLIENT_SECRET=RQjR2ODnm6q8yzNTZiaztUdzsanfu3L3TJsEHpOl
 
 FROM php:7.4-fpm
 LABEL author=ChenKS<chenks12138@gmail.com>
@@ -19,6 +20,6 @@ RUN install-php-extensions gd zip PDO pdo_mysql @composer-1
 RUN composer install
 RUN cp .env.example .env
 RUN php artisan key:generate
-COPY ./scripts/entrypoint.sh /entrypoint.sh
+COPY ./docker/backend-entrypoint.sh /entrypoint.sh
 EXPOSE ${PORT}
-ENTRYPOINT [ "/entrypoint.sh", "RQjR2ODnm6q8yzNTZiaztUdzsanfu3L3TJsEHpOl"]
+ENTRYPOINT [ "/entrypoint.sh", "$CLIENT_SECRET"]

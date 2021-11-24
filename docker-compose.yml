@@ -50,10 +50,10 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     networks:
       - app_net
-    ports:
-      - 3306:3306
     volumes:
       - ./mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
       interval: 2s

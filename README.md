@@ -8,6 +8,8 @@ docker >= 20.10.8 (Recommand)\
 docker-composer >= 1.29.2 (Recommand)
 
 ```shell
+git clone https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost.git
+cd sast_fresh_cup_boost
 cp .env.example .env
 # Edit .env
 git submodule update --init -recursive

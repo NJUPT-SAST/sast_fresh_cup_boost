@@ -1,0 +1,46 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-entry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Docker Login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build the Docker image
+        run: docker build --build-arg CLIENT_SECRET=RQjR2ODnm6q8yzNTZiaztUdzsanfu3L3TJsEHpOl -f docker/entry.Dockerfile -t ${{secrets.DOCKER_USER}}/sast-fresh-cup-entry:latest .
+      - name: Docker Push
+        run: docker push ${{secrets.DOCKER_USER}}/sast-fresh-cup-entry:latest
+      - name: Docker Logout
+        run: docker logout
+
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Docker Login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build the Docker image
+        run: docker build --build-arg CLIENT_SECRET=RQjR2ODnm6q8yzNTZiaztUdzsanfu3L3TJsEHpOl -f docker/backend.Dockerfile -t ${{secrets.DOCKER_USER}}/sast-fresh-cup-backend:latest .
+      - name: Docker Push
+        run: docker push ${{secrets.DOCKER_USER}}/sast-fresh-cup-backend:latest
+      - name: Docker Logout
+        run: docker logout

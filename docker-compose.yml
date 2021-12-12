@@ -6,11 +6,7 @@ networks:
 services:
   entry:
     container_name: entry
-    build:
-      context: .
-      dockerfile: docker/entry.Dockerfile
-      args:
-        - CLIENT_SECRET=${CLIENT_SECRET}
+    image: njuptsast:sast-fresh-cup-entry:lastest
     networks:
       - app_net
     depends_on:
@@ -20,11 +16,7 @@ services:
 
   backend:
     container_name: backend
-    build:
-      context: .
-      dockerfile: docker/backend.Dockerfile
-      args:
-        - CLIENT_SECRET=${CLIENT_SECRET}
+    image: njuptsast:sast-fresh-cup-backend:latest
     networks:
       - app_net
     depends_on:

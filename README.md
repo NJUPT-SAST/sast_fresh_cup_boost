@@ -12,7 +12,6 @@ git clone https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost.g
 cd sast_fresh_cup_boost
 cp .env.example .env
 # Edit .env
-git submodule update --init --recursive
 docker-compose up -d
 ```
 

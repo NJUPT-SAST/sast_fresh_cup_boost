@@ -6,7 +6,7 @@ networks:
 services:
   entry:
     container_name: entry
-    image: njuptsast:sast-fresh-cup-entry:lastest
+    image: njuptsast/sast-fresh-cup-entry:latest
     networks:
       - app_net
     depends_on:
@@ -16,7 +16,7 @@ services:
 
   backend:
     container_name: backend
-    image: njuptsast:sast-fresh-cup-backend:latest
+    image: njuptsast/sast-fresh-cup-backend:latest
     networks:
       - app_net
     depends_on:

@@ -10,11 +10,10 @@ docker >= 20.10.8 (Recommand)\
 docker-composer >= 1.29.2 (Recommand)
 
 ```shell
-git clone https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost.git
-cd sast_fresh_cup_boost
-cp .env.example .env
-# Edit .env
-docker-compose up -d
+# export http_proxy=http://127.0.0.1:1087
+curl -sL -o .env https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost/raw/main/.env.example
+# vim .env
+curl -sL -o - https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost/raw/main/docker-compose.yml | docker-compose -p sast_fresh_cup -f - up -d
 ```
 
 ### Administration Configuration

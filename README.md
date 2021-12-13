@@ -1,5 +1,7 @@
 # sast_fresh_cup_boost
 
+[![Docker Image CI](https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost/actions/workflows/build.yml/badge.svg)](https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost/actions/workflows/build.yml)
+
 ## How To Setup
 
 ### requirements:

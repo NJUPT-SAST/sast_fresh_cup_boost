@@ -11,9 +11,12 @@ docker-composer >= 1.29.2 (Recommand)
 
 ```shell
 # export http_proxy=http://127.0.0.1:1087
+mkdir -p /srv/sast_fresh_cup_boost/
+cd /srv/sast_fresh_cup_boost/
 curl -sL -o .env https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost/raw/main/.env.example
 # vim .env
-curl -sL -o - https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost/raw/main/docker-compose.yml | docker-compose -p sast_fresh_cup -f - up -d
+curl -sL -o docker-compose.yml https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost/raw/main/docker-compose.yml
+docker-compose -p sast_fresh_cup -f - up -d
 ```
 
 ### Administration Configuration

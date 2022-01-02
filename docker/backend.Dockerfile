@@ -1,6 +1,5 @@
 FROM php:7.4-fpm
 ARG PORT=8000
-ARG CLIENT_SECRET=RQjR2ODnm6q8yzNTZiaztUdzsanfu3L3TJsEHpOl
 LABEL author=ChenKS<chenks12138@gmail.com>
 ENV ADMIN_NAME=admin
 ENV ADMIN_EMAIL=sast_fresh_cup@sast.njupt.com
@@ -23,6 +22,5 @@ RUN cp .env.example .env
 RUN php artisan key:generate
 COPY ./docker/backend-entrypoint.sh /entrypoint.sh
 COPY ./config/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
-RUN echo -n "${CLIENT_SECRET}" > /CLIENT_SECRET
 EXPOSE ${PORT}
-ENTRYPOINT exec /entrypoint.sh $(cat /CLIENT_SECRET)
+ENTRYPOINT exec /entrypoint.sh

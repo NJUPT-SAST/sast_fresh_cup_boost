@@ -29,7 +29,7 @@ docker-compose -p sast_fresh_cup -f - up -d
 
 ```shell
 pip3 install locust
-CLIENT_SECRET=RQjR2ODnm6q8yzNTZiaztUdzsanfu3L3TJsEHpOl HOST=http://127.0.0.1:8000 ./scripts/benchmark.py
+HOST=http://127.0.0.1:8000 ./scripts/benchmark.py
 ```
 
 ### Run Review-Check System

@@ -8,12 +8,9 @@ from locust import HttpUser, task, user
 from locust.env import Environment
 from locust.stats import stats_printer, stats_history
 from os import getenv, _exit
-from locust.user import wait_time
 
-CLIENT_SECRET = getenv('CLIENT_SECRET')
 HOST = getenv('HOST')
 
-print('CLIENT_SECRET=', CLIENT_SECRET)
 print('HOST=', HOST)
 
 
@@ -23,11 +20,8 @@ class ContestUser(HttpUser):
 
     def on_start(self):
         with self.client.post(url="/oauth/token", json={
-            'client_secret': CLIENT_SECRET,
             'username': 'sast_fresh_cup@sast.njupt.com',
             'password': 'admin123',
-            'grant_type': 'password',
-            'client_id': 2
         }) as response:
             data = response.json()
             if 'access_token' not in data:
@@ -71,7 +65,7 @@ gevent.spawn(stats_printer(env.stats))
 gevent.spawn(stats_history, env.runner)
 
 # start the test
-env.runner.start(100, spawn_rate=30)
+env.runner.start(600, spawn_rate=100)
 
 # in 60 seconds stop the runner
 gevent.spawn_later(60, lambda: env.runner.quit())

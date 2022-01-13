@@ -16,7 +16,7 @@ cd /srv/sast_fresh_cup_boost/
 curl -sL -o .env https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost/raw/main/.env.example
 # vim .env
 curl -sL -o docker-compose.yml https://github.com/NJUPT-SAST-Technology-Center/sast_fresh_cup_boost/raw/main/docker-compose.yml
-docker-compose -p sast_fresh_cup -f - up -d
+docker-compose -p sast_fresh_cup up -d
 ```
 
 ### Administration Configuration
